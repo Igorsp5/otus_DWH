@@ -1,15 +1,57 @@
-Welcome to your new dbt project!
+### Домашняя работа №2 по курсу OTUS Data Warehouse Analyst
+Целью домашнего задания является развертывание кластера ClickHouse в Яндекс.Облаке, 
+создание учебного проекта dbt для загрузки данных из S3 и построения витрин.
+Описание задания: https://gist.github.com/kzzzr/8d50126079df1a8e5646342f6247df22
 
-### Using the starter project
+### Создание кластера
+Осуществляется запросом:
+```
+yc managed-clickhouse cluster create \
+    --name clickhouse-dwh \
+    --network-name default \
+    --host type=clickhouse,zone-id=ru-central1-b,subnet-name=default-ru-central1-b,assign-public-ip \
+    --user name=<name>,password=<password> \
+    --database name=db \
+    --clickhouse-resource-preset s2.micro \
+    --clickhouse-disk-type network-ssd \
+    --clickhouse-disk-size 70
+```
 
-Try running the following commands:
-- dbt run
-- dbt test
+### Модель данных
+![Lineage Graph](graph.png)
+
+### Запуск проекта 
+
+по отдельности
+```
+    dbt run -m tag:staging
+    dbt run -m tag:star
+    dbt run -m tag:marts
+```
+
+либо  полностью проект 
+
+```
+    dbt run --full-refresh
+```
+![Lineage Graph](run.png)
 
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+### Тестирование проекта 
+
+```
+    dbt test -m tag:staging
+    dbt test -m tag:star
+    dbt test -m tag:marts
+
+    dbt test
+```
+![Lineage Graph](test.png)
+
+
+### Создание документа проекта
+
+```
+    dbt docs generate
+    dbt docs serve
+```

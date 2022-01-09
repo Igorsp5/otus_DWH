@@ -1,0 +1,18 @@
+#put this file in   ~/.dbt/
+config:
+  send_anonymous_usage_stats: false
+  partial_parse: true
+
+clickhouse_starschema:
+  outputs:
+    dev:
+      type: clickhouse
+      schema: db
+      host: <host>
+      port: 9440
+      user: <user_name>
+      password: <password>
+      secure: True
+      threads: 4
+  target: dev
+

@@ -3,6 +3,7 @@
 создание учебного проекта dbt для загрузки данных из S3 и построения витрин.
 Описание задания: https://gist.github.com/kzzzr/8d50126079df1a8e5646342f6247df22
 
+https://gist.github.com/kzzzr/8d50126079df1a8e5646342f6247df22
 ### Создание кластера
 Осуществляется запросом:
 ```
@@ -80,6 +81,8 @@ yc managed-clickhouse cluster create \
 
 ![Lineage Graph](q2_1.png)
 
+![Lineage Graph](q2_1_.png)
+
 ##q3_3
 
 ```
@@ -100,6 +103,8 @@ yc managed-clickhouse cluster create \
 ```
 
 ![Lineage Graph](q3_3.png)
+
+![Lineage Graph](q3_3_.png)
 
 ##q4_2
 
@@ -122,3 +127,5 @@ yc managed-clickhouse cluster create \
 ```
 
 ![Lineage Graph](q4_2.png)
+
+![Lineage Graph](q4_2_.png)
